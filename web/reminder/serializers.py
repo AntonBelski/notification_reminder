@@ -15,9 +15,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class NotificationSerializer(serializers.ModelSerializer):
-    participants = UserSerializer(many=True)
+    participants = UserSerializer(many=True, required=False)
     owner = serializers.StringRelatedField()
 
     class Meta:
         model = Notification
-        fields = ('title', 'description', 'location', 'creation_date', 'event_date', 'is_finished')
+        fields = ('title', 'description', 'location', 'creation_date', 'event_date', 'is_finished',
+                  'participants', 'owner')
