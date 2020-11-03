@@ -10,4 +10,5 @@ class Notification(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_notifications', null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     event_date = models.DateTimeField()
+    is_event_data_send = models.BooleanField(default=False)
     is_finished = models.BooleanField()
