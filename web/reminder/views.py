@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
 
 from reminder.models import Notification
+from reminder.permissions import IsUserNotification
 from reminder.serializers import UserSerializer, NotificationSerializer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -27,3 +28,5 @@ class UserCreate(APIView):
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
+    permission_classes = (permissions.IsAuthenticated & IsUserNotification,)
+
